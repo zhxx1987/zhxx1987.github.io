@@ -1,0 +1,91 @@
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+        body {
+            background-image: url("image1.JPG");
+            background-position: center top;
+            background-size: 100% auto;
+}
+
+        h1 {
+            background-image: url("image1.JPG");
+        }
+
+        p {
+            background-color: white;
+            background-color: rgba(255, 255, 255, .85);
+        }
+    </style>
+</head>
+
+
+<html>
+<body>
+    <div id="contact-form" class="clearfix">
+        <h2>Welcome to Our Wedding!</h2>
+
+
+        <h3>Ceremony Location : </h3>
+
+        <a href="https://www.google.ca/maps/place/Bulgari+Resort+Bali/@-8.843816,115.1185023,17z/data=!4m5!3m4!1s0x2dd25aeb78ae720f:0xe1921a963bc56297!8m2!3d-8.843816!4d115.120691"> Bulgari Resort at Bali</a>
+        <br>
+        <a href="http://j.map.baidu.com/9Wq7j"> 中国大陆请点击</a>
+        <br>
+        <h4> Hotel Options:</h4>
+        <a href="https://www.expedia.ca/Hotel-Search?#destination=Nusa+Dua,+Indonesia&startDate=17/09/2017&endDate=19/09/2017&adults=2&regionId=6049363&inventory=regular"> Nice Stays</a>
+
+        <h4> please provid us your detailed information so that we won't miss you in the ceremony!</h4>
+
+
+        <form method="post" action="process.php">
+            <label for="name">
+                Name: <span class="required">*</span>
+            </label>
+            <input type="text" id="name" name="name" value="" placeholder="xinxin zhang" required="required" autofocus="autofocus" />
+
+            <label for="email">
+                Email Address: <span class="required">*</span>
+            </label>
+            <input type="email" id="email" name="email" value="" placeholder="name@example.com" required="required" />
+
+            <label for="telephone">Telephone: </label>
+            <input type="tel" id="telephone" name="telephone" value="" />
+
+            <label for="flightnum">
+                Your flight number: <span class="required">*</span>
+            </label>
+            <input type="text" id="flightnum" name="flightnum" value="" placeholder="xx0000" required="required" />
+
+            <label for="arrivaldate">
+                Arrival date in Bali(17/09/2017 is highly recommended): <span class="required">*</span>
+            </label>
+            <input type="date" id="arrivaldate" name="arrivaldate" value="" placeholder="dd/mm/yyyy" required="required" />
+
+            <label for="arrivaltime">
+                Arrival time in Bali(24 hours format): <span class="required">*</span>
+            </label>
+            <input type="text" id="arrivaltime" name="arrivaltime" value="" placeholder="23:59" required="required" />
+
+            <label for="wechatID">
+                Your WeChatID: <span class="required">*</span>
+            </label>
+            <input type="text" id="wechatID" name="wechatID" value="" placeholder="xxxxxx" required="required" />
+
+            <label for="invitecode">
+                Your invititation code: <span class="required">*</span>
+            </label>
+            <input type="text" id="invitecode" name="invitecode" value="" placeholder="0000000" required="required" />
+
+            <span id="loading"></span>
+            <input type="submit" value="submit!" id="submit-button" />
+            <p id="req-field-desc">
+                <span class="required">*</span> indicates a required field
+            </p>
+        </form>
+    </div>
+</body>
+<audio auto<audio autoplay="true" src="ny.mp3">
+</html>
+

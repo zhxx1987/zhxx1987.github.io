@@ -1,0 +1,370 @@
+
+
+<html>
+<head>
+<style>
+html, body { width:  100%; height: 100%; margin: 0px; }
+body { background: #000; color: #aaa; font-family: sans-serif; font-size: 12px;}
+a {cursor: pointer; color: #eee; text-decoration: underline;}
+#fps{padding: 5px;}
+#canvas-fluid { zoom: 50%; }
+p {margin:0 5px; padding: 5px; }
+h2 {color:#fff; font-size: 18px; margin:0 5px; padding: 5px; }
+</style>
+</head>
+<body>
+
+<div id="dropArea" width="1600" height="900">
+</div>
+<canvas id="canvas-fluid" width="1000" height="1000"></canvas>
+
+<script src="FluidField.js"></script>
+<script src="FluidDisplay.js"></script>
+<script src="BeatDetector.js"></script>
+<script>
+
+var canvas = document.getElementById("canvas-fluid");
+canvas.addEventListener('mousemove', update, false);
+
+var droparea = document.getElementById("dropArea");
+canvas.addEventListener('drop', dropEvent, false);
+canvas.addEventListener('dragover', dragOver, false);
+//canvas.addEventListener('dragover', dragOver, false);
+var music_playing = false;
+var xhr;
+var field = new FluidField();
+var display = new FluidDisplay(field);
+//var audio = new Audio();
+var context = new (window.AudioContext || window.webkitAudioContext)();
+var source;
+var processor;
+var analyser;
+var xhr;
+var T = 0 ;
+var T_chance = 0;
+var y_offset = 20;
+var beat_detector = new BeatDetector();
+function initAudio(data) {
+    source = context.createBufferSource();
+
+    if(context.decodeAudioData) {
+        context.decodeAudioData(data, function(buffer) {
+            source.buffer = buffer;
+            createAudio();
+        }, function(e) {
+            //console.log(e);
+        });
+    } else {
+        source.buffer = context.createBuffer(data, false /*mixToMono*/);
+        createAudio();
+    }
+}
+
+function createAudio() {
+    processor = context.createScriptProcessor(2048 /*bufferSize*/, 1 /*num inputs*/, 1 /*numoutputs*/);
+    processor.onaudioprocess = processAudio;
+    analyser = context.createAnalyser();
+		analyser.fftsize = 128;
+    source.connect(context.destination);
+    source.connect(analyser);
+
+    analyser.connect(processor);
+    processor.connect(context.destination);
+		source.loop  = true;
+    source.start(0);
+		music_playing = true;
+    //setTimeout(disconnect, source.buffer.duration * 1000);
+}
+function disconnect() {
+    music_playing = false;
+		field.dt = 0.09;
+		T = 0;
+    source.stop(0);
+    source.disconnect(0);
+    processor.disconnect(0);
+    analyser.disconnect(0);
+}
+
+function processAudio(e) {
+    //var freqByteData = new Uint8Array(analyser.frequencyBinCount);
+    //analyser.getByteFrequencyData(freqByteData);
+    //console.log(freqByteData);
+}
+
+function handleResult() {
+    if (xhr.readyState == 4 /* complete */) {
+        switch(xhr.status) {
+            case 200: /* Success */
+                initAudio(request.response);
+                break;
+            default:
+                break;
+        }
+        xhr = null;
+    }      
+}
+
+var start = new Date(); // reset after each fps calculation
+var initial = new Date(); // very beginning
+var frames = 0; // for fps calculation
+
+var time = 0; // time since very beginning
+var offset = 0;
+var interval = 5;
+var running = false;
+
+var n = 180000; // number of particles
+var life = 200; // lifetime of particles in frames
+var px = new Float32Array(n); // x coordinate of particles
+var py = new Float32Array(n); // y coordinate of particles
+var pc = new Float32Array(n); // color of particle (hue)
+var pl = new Int16Array(n);   // age of particle
+
+var showVelocity = false;
+var showParticles = true;
+
+var theta = 0;
+var velocity = 2;
+var radius = 8;
+
+var mx = 0; // mouse coordinates
+var my = 0;
+
+function update(event) {
+    event = event || window.event;
+    var x = event.pageX - canvas.offsetLeft;
+    var y = event.pageY - canvas.offsetTop;
+    x = x / canvas.width*2;
+    y = y / canvas.height*2;
+    x = Math.floor(x * field.width);
+    y = Math.floor(y * field.height);
+    var dx = x - mx;
+    var dy = y - my;
+    mx = x;
+    my = y;
+    var v = 5;
+    //var vx = field.getXVelocity(x, y) + v * dx;
+    //var vy = field.getYVelocity(x, y) + v * dy;
+    field.setVelocity(x, y, 5*dx, 5*dy);
+}
+
+function dragOver(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    return false;
+}
+function dropEvent(evt)
+{
+ 		evt.stopPropagation();
+    evt.preventDefault();
+		if(music_playing==true)
+		  disconnect();
+		var droppedFiles = evt.dataTransfer.files;
+		var reader = new FileReader();
+    
+    reader.onload = function(fileEvent) {
+        var data = fileEvent.target.result;
+        initAudio(data);
+    }
+    
+    reader.readAsArrayBuffer(droppedFiles[0]);
+		
+
+		
+}
+
+function resetParticle(i) {
+    /*
+    var t = i / n;
+    var r = radius + Math.random();
+    px[i] = field.width * 0.5 + r * Math.cos(t * 2 * Math.PI);
+    py[i] = field.height * 0.5 + r * Math.sin(t * 2 * Math.PI);
+    pc[i] = t + offset;
+    pc[i] -= Math.floor(pc[i]);
+    pl[i] = life;
+    */
+		
+//    px[i] = 0.1*field.width + 0.8*Math.random() * field.width;
+//    py[i] = Math.random() * 2+0.85*field.height;
+//    var t = i / n * 0.3 + 0.5;
+//    pc[i] = t + offset;
+//    pc[i] -= Math.floor(pc[i]);
+//    pl[i] = life;
+		
+		
+		//px[i] = (i%(n/3))/(n/3)*0.8*field.width + 0.1*field.width;
+		//py[i] = Math.floor(i/(n/3))*0.3 + 0.85*field.height ;
+		var color = Math.random();
+		px[i] = 0.1*field.width + 0.8*color * field.width;
+		if(Math.random()>0.5)
+    {  py[i] = 80 + 0.1*Math.random() *field.height+y_offset;}
+		else
+		{  py[i] = 60 + 0.1*Math.random() *field.height + y_offset;
+		   
+		}
+		
+		var t =  color;
+    pc[i] = t + offset;
+    pc[i] -= Math.floor(pc[i]);
+    pl[i] = life;
+		
+
+}
+
+function updateFrame() {
+  
+  requestAnimationFrame(updateFrame);
+	if(music_playing == true)
+	{
+	     var speed_change = Math.floor(T/80);
+			 if(speed_change%2 == 1){
+	         field.dt = 0.1 * beat_detector.beatChance*0.5;
+			     field.dt = Math.max(Math.min(0.16,field.dt),0.03);
+			 }
+			 else
+			 {
+			     field.dt = 0.07;
+			 }
+	     T = T+field.dt;
+			 //console.log(T);
+			 
+       beat_detector.sample(analyser);
+			 for(var i=0;i<beat_detector.historyBins;i++)
+			 {
+			      if(beat_detector.binChance[i]>0.0)
+						{
+						    
+								
+						    field.setVelocity((i+1)*10,90+y_offset,0,-field.dt*20*beat_detector.binChance[i]*(i+1));
+								
+						}
+						
+			 }
+			 if(beat_detector.beatChance > 0.3)
+			 {
+			      
+						//field.setVelocity(40,80,field.dt*40*beat_detector.beatChance,0);
+						var dir = 0;
+						
+						dir = Math.random();
+						//console.log(0.1*T);
+						if(dir>0.5){dir=1;}else{dir=-1;}
+						var force = Math.max(0.13*80*beat_detector.beatChance, 2*field.dt*80*beat_detector.beatChance);
+						var force_clamp = 24;
+						field.setVelocity(18,95+y_offset,Math.min(force,force_clamp),-Math.min(1.5*force,force_clamp));
+						field.setVelocity(34,65+y_offset,dir*Math.min(3*force,force_clamp),0);
+						field.setVelocity(44,65+y_offset,dir*Math.min(3*force,force_clamp),0);
+						//field.setVelocity(54,90,field.dt*200*dir*beat_detector.beatChance, 0);
+						field.setVelocity(64,65+y_offset,dir*Math.min(3*force,force_clamp),0);
+						//field.setVelocity(74,90,field.dt*200*dir*beat_detector.beatChance, 0);
+						field.setVelocity(84,65+y_offset,dir*Math.min(3*force,force_clamp),0);
+						field.setVelocity(94,65+y_offset,dir*Math.min(3*force,force_clamp),0);
+						//field.setVelocity(80,80,-field.dt*40*beat_detector.beatChance,0);
+						field.setVelocity(110,95+y_offset,-Math.min(force,force_clamp),-Math.min(1.5*force,force_clamp));
+						
+			 }
+			 //T=T%6;
+			 if(T>1000000){T=0;}
+			 var ii = (Math.floor(T*10))%6;
+			 //console.log(ii);
+			 
+			 for(var i=0;i<n;i++)
+			 {  
+			   field.addBouyancy(px[i],py[i],0,-(beat_detector.beatChance-0.5)*life*field.dt*0.0006);
+			 }
+			   
+			 
+			 
+			 
+	}
+	
+  var end = new Date;
+  time = end - initial;
+  offset = time * 0.0001;
+
+  // updateVelocities();
+	
+  field.update();
+  //field.dt = 0.1
+  for (var i = 0; i < n; i++) {
+    var jitter = (1 - pl[i] / life);
+		var inv_h = 1.0 / field.h;
+    var vx = field.getXVelocity(px[i]-0.5, py[i]-0.5);
+    var vy = field.getYVelocity(px[i]-0.5, py[i]-0.5);
+   
+		if(field.dt<0.1){
+		  
+		  px[i] += field.dt*inv_h*vx;
+		  py[i] += field.dt*inv_h*vy;
+		}
+		else
+		{
+		  var mx = px[i] + 0.5*inv_h*field.dt*vx;
+      var my = py[i] + 0.5*inv_h*field.dt*vy;
+		  var vmx = field.getXVelocity(mx-0.5, my-0.5);
+      var vmy = field.getYVelocity(mx-0.5, my-0.5);
+		  px[i] += field.dt*inv_h*vx;
+		  py[i] += field.dt*inv_h*vy;
+		}
+    pl[i] = pl[i] - 15*field.dt;
+		//pl[i] = pl[i] * beat_detector.beatChance;
+    if (pl[i] < 1 || px[i] < 1 || px[i] > field.width || py[i] < 1 || py[i] > field.height - 1) {
+      resetParticle(i);
+    }
+  }
+  
+  display.clear();
+  
+  if (showParticles && music_playing){
+	  var light = beat_detector.beatChance*0.8 + 0.5;
+		
+		field.dt = 0.1 * beat_detector.beatChance*0.5;
+		field.dt = Math.max(Math.min(0.16,field.dt),0.03);
+		
+		if(field.dt>=0.11){T_chance = T_chance + 1;}
+		else{ light = 0.5;}
+		light = 0.5;
+		T_chance = T_chance%4;
+		light = 0.5 + (Math.floor((T_chance%4)/2)%2)/2*1.4;
+		//console.log(light);
+    display.renderParticles(field, light, px, py, pc, pl);
+	}else
+	{
+	  display.renderParticles(field, 1, px, py, pc, pl);
+	}
+  
+
+
+}
+
+window.onload = function() {
+  music_playing = false;
+	T = 0;
+	T_chance = 0;
+  for (var i = 0; i < n; i++) {
+    resetParticle(i);
+    pl[i] = Math.floor(Math.random() * life);
+  }
+  request = new XMLHttpRequest();
+
+  request.open('GET', 'http://www.cs.ubc.ca/~zhxx/ny.mp3', true);
+
+  request.responseType = 'arraybuffer';
+
+
+  request.onload = function() {
+    var audioData = request.response;
+
+    initAudio(audioData);
+
+  }
+
+  request.send();
+	
+	
+  requestAnimationFrame(updateFrame);
+	
+}
+
+</script>
+</body>

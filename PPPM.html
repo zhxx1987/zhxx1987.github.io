@@ -1,0 +1,218 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>Particle-particle Particle-mesh(PPPM) fast summation for fluids and N-body dynamics</title>
+  </head>
+  <body bgcolor="#000000" link="#F2F2F2" text="#F2F2F2" vlink="#F2F2F2">	
+	<center>
+      <table border="0" cellpadding="0" cellspacing="0" height="100%">
+         <tbody>
+          <tr>
+            <td valign="CENTER">
+              <table border="0" cellpadding="0" cellspacing="0" width="900">
+                <tbody>
+                  <TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+                  <tr>
+                    <td colspan="3" width="100%">
+                      <font face="Arial" size="+3"> </font>
+                        <p><font face="Arial" size="+3"><b><i><a href="PPPM.pdf">Particle-particle Particle-mesh(PPPM) Fast Summation For Fluids and beyond(N-body Dynamics)</a></i></b></FONT><BR>
+												<font face="Arial"> <i>to appear in SIGGRAPH Asia 2014</i></P>
+												
+                        
+                      </TD>
+                  </TR>
+                  <TR>
+                    <TD COLSPAN = "3"><HR></TD>
+                  <TR>
+									<TR>
+                    <TD>
+                      <TABLE BORDER = "0" CELLPADDING = "0" CELLSPACING = "0" WIDTH = "100%">
+                        <TR>
+                          <TD width = "20%">
+                            <font face="Arial"> 
+                            <a href="index.html">Xinxin Zhang</a>
+                            </font>
+                          </TD>
+                          <TD width = "40%">
+                            <font face="Arial"> 
+                            <i>University of British Columbia</i><BR>
+                            </font>
+                          </TD>
+													<TD width = "40%">
+                            <font face="Arial"> 
+                            <i>zhxx at cs dot ubc dot ca</i><BR>
+                            </font>
+                          </TD>
+                        </TR>
+                      </TABLE>
+                    </TD>
+                  </TR>
+									<TR>
+                    <TD>
+                      <TABLE BORDER = "0" CELLPADDING = "0" CELLSPACING = "0" WIDTH = "100%">
+                        <TR>
+                          <TD width = "20%">
+                            <font face="Arial"> 
+                            <a href="http://www.cs.ubc.ca/~rbridson/">Robert Bridson</a>
+                            </font>
+                          </TD>
+                          <TD width = "80%">
+                            <font face="Arial"> 
+                            <i>Autodesk, University of British Columbia</i><br>
+                            </font>
+                          </TD>
+                        </TR>
+                      </TABLE>
+                    </TD>
+                  </TR>
+									
+									
+									
+									
+									
+									
+									
+									
+									<TR>
+                    <TD COLSPAN = "3">&nbsp;</TD>
+                  <TR>
+                    <TD>
+                        <img src="vortex2.jpg"   width="900">
+                        <font face = "Arial" size = "-1"><I><B>Above:</B></I> Velocity visualization and rendered image from a vortex based buoyancy simulation </font>
+                        
+                    </td>
+                  </tr>
+									
+									
+									
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+                  <tr>
+                    <td colspan="3" align="justify" width="75%"> <font
+                        face="Arial"> <b>Abstract</b></font>
+                      <p><font face="Arial">
+
+                         Solving the N-body problem, i.e.\ the Poisson problem with point sources, 
+												 is a common task in graphics and simulation. The naive direct summation 
+												 of the kernel function over all particles scales quadratically, rendering 
+												 it too slow for large problems, while the optimal Fast Multipole Method has 
+												 drastic implementation complexity and can sometimes carry too high an overhead 
+												 to be practical. We present a new Particle-Particle Particle-Mesh (PPPM) 
+												 algorithm which is fast, accurate, and easy to implement even in parallel on 
+												 a GPU. We capture long-range interactions with a fast multigrid solver on a 
+												 background grid with a novel boundary condition, while short-range interactions 
+												 are calculated directly with a new error compensation to avoid error from the 
+												 background grid. We demonstrate the power of PPPM with a new vortex particle 
+												 smoke solver, which features a vortex segment-approach to the stretching term, 
+												 potential flow to enforce no-stick solid boundaries on arbitrary moving solid 
+												 boundaries, and a new mechanism for vortex shedding from boundary layers. 
+												 Comparison against a simpler Vortex-in-Cell approach shows PPPM can produce 
+												 significantly more detailed results with less computation. In addition, we use 
+												 our PPPM solver for a Poisson surface reconstruction problem to show its potential 
+												 as a general-purpose Poisson solver.
+                        </font> </p>
+                    </td>
+                  </tr>
+									
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									
+                      
+								
+                        
+                      
+                    
+									
+									
+									
+									
+									
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									
+									
+									
+									<tr>
+                    <td colspan="3">
+                      
+										<font face="Arial"> <b>Auxiliary videos, simulation done with NO post physics(such as vort confinement or wavelet turbulence)</b></font>
+												 
+                      
+                    </td>
+                  </tr>	
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									
+									<tr>
+                    <td colspan="3">
+                      
+										<font face="Arial"> <b>Youtube Links: </b></font>
+												 
+                      
+                    </td>
+                  </tr>		 
+									
+									
+                  <tr>
+                    <td colspan="3">
+                      <center>
+											  <iframe width="427" height="240" src="http://www.youtube.com/embed/q5frq-g_mOs" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="427" height="320" src="http://www.youtube.com/embed/-_9Kx8xJ614" frameborder="0" allowfullscreen></iframe>
+                      </center>
+                    </td>
+                  </tr>
+									
+									
+									
+									<tr>
+                    <td colspan="3">
+                      
+										<font face="Arial"> <b>Youku Links: </b></font>
+												 
+                      
+                    </td>
+                  </tr>
+									
+									<tr>
+                    <td colspan="3">
+                      <center>
+											  <embed src="http://player.youku.com/player.php/sid/XNzg2MDE3NjEy/v.swf" 
+												allowFullScreen="true" quality="high" width="420" height="350" align="middle" 
+												allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+											
+											
+											
+											  <embed src="http://player.youku.com/player.php/sid/XNzg2MDE5NTk2/v.swf" 
+									       allowFullScreen="true" quality="high" width="420" height="350" align="middle" 
+									       allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+												 
+												 
+                        
+                      </center>
+                    </td>
+                  </tr>
+									
+									
+									
+									
+         
+        <tbody>
+			<table>
+			
+			<a href="http://www.cs.ubc.ca/~zhxx/test_java_script.htm">A fluid music visualizer</a>
+			
+	<center>
+  </body>
+</html>

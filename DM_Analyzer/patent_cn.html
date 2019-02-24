@@ -1,0 +1,255 @@
+<!doctype <html>
+<head>
+	<meta charset="utf-8">
+	<title>分化型甲状腺癌远处转移分析器</title>
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+	<![endif]-->
+	<link href="css_cn.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<table id="main" width="100%" border="0" align="center">
+	<tr>
+	<td width="10%"></td>
+	<td width="80%" align="center">
+	<img id="logo" src="patent_logo_new_new_big_right.jpg"/>
+	<div id="header" class="red">
+		分化型甲状腺癌远处转移分析器
+	</div>
+	<div id="lang-version"><a href="patent_en.html">English Version</a></div>
+	<form id="calc_form">
+	<div class="intro">
+		<p align="left"><span class="bold">温馨提示:</span> <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;甲状腺癌是最常见的内分泌恶性肿瘤，其发病率近年逐年上升，其中约90%为分化型甲状腺癌(DTC)。尽管DTC是一种惰性肿瘤，通常预后较好，但仍有1-23%的患者因发生远处转移导致生存率下降。临床工作中，对于这部分患者的及时诊断（特别是在<sup>131</sup>I治疗前确诊）对其病情评估、制定治疗决策以及改善预后至关重要。本分析器主要利用患者<span class="underline-blue">术后未服或停服甲状腺激素后TSH刺激状态(&gt;30&mu;IU/mL)下测定的数次血清Tg水平（刺激性Tg，sTg)</span> 判断患者是否存在远处转移，其准确率、特异度、灵敏度分别可达91.2%、92.2%、87.5%。</p>
+	</div>
+
+		<hr>
+		<br>
+
+		<div id="info" align="left">
+	    <span class="bold">请在下表<span class="underline-blue">两列空格</span>处分别输入患者术后未服或停服甲状腺激素后记录的<span class="underline-blue">首次</span>及<span class="underline-blue">末次sTg对应的血清学检查结果</span>：</span>
+	    </div>
+
+	    <br>
+
+	    <div>
+	    <table id="input_table" width="100%" border="0">
+	    	<tr class="red">
+	    		<td width="5%"></td>
+	    		<td width="25%"></td>
+	    		<td width="30%">
+	    			<label>首次sTg相应结果</label>
+	    		</td>
+	    		<td width="30%">
+	    			<label>末次sTg相应结果</label>
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    	<tr></tr>
+	    	<tr>
+	    		<td width="5%"></td>
+	    		<td width="25%" class="red"><label>检测日期 </label></td>
+	    		<td width="30%">
+	    			<input type="text" id="input_date1" size="19" placeholder="yyyy/mm/dd">
+	    		</td>
+	    		<td width="30%">
+	    			<input type="text" id="input_date2" size="19" placeholder="yyyy/mm/dd">	
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    	<tr></tr>
+	    	<tr>
+	    		<td width="5%"></td>
+	    		<td width="25%" class="red"><label>促甲状腺激素(TSH) </label></td>
+	    		<td width="30%">
+	    			<input type="text" id="input_tsh1" size="19" placeholder="0">
+	    		</td>
+	    		<td width="30%">
+	    			<input type="text" id="input_tsh2" size="19" placeholder="0">	
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    	<tr></tr>
+	    	<tr>
+	    		<td width="5%"></td>
+	    		<td width="25%" class="red"><label>甲状腺球蛋白(Tg) </label></td>
+	    		<td width="30%">
+	    			<input type="text" id="input_tg1" size="19" placeholder="0">
+	    		</td>
+	    		<td width="30%">
+	    			<input type="text" id="input_tg2" size="19" placeholder="0">	
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    	<tr></tr>
+	    	<tr>
+	    		<td width="5%"></td>
+	    		<td width="25%" class="red"><label>甲状腺球蛋白抗体(TgAb) </label></td>
+	    		<td width="30%">
+	    			<input type="text" id="input_tgab1" size="19" placeholder="0">
+	    		</td>
+	    		<td width="30%">
+	    			<input type="text" id="input_tgab2" size="19" placeholder="0">	
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    
+	    </table>
+		</div>
+
+	    <br>
+
+	    <div class="info" id="notes" align="left">
+		    	<span class="bold">注：</span>为保证结果的准确性，患者血清学检查结果需满足如下条件<br>
+				 1. sTg均在TSH刺激状态(一般满足TSH&gt;30&mu;IU/mL)下测得.<br>
+				 2. TgAb水平在115 IU/mL以下,以减小TgAb高水平对Tg测量值的影响. <br>
+				
+	    </div>
+
+	<br>
+
+	<div id="summary">
+
+	    <div class="group calc">
+	    	<table>
+	    		<tr>
+	    			<td><input type="button" value="开始分析" id="btn-calc" onclick="makePrediction()"></td>
+	    			<td width="20%"></td>
+	    			<td><input type="button" value="清空" id="btn-clear" onclick="makeClear()"></td>
+	    		</tr>
+		    </table>
+
+	    </div>
+	    <br><br>
+	    <div id="results"></div>
+
+
+	</div>
+	</form>
+	</td>
+	<td width="10%"></td>
+	</tr>
+	</table>
+
+
+	<script type="text/javascript">
+	"use strict";
+
+	function makeClear() {
+		window.location.reload();
+	}
+
+	function makePrediction () {
+
+
+		if (document.getElementById('input_tsh1').value === '') {
+			alert('请填写首次sTg相应的TSH水平.');
+			document.getElementById('input_tsh1').focus();
+			return;
+		}
+		else if (document.getElementById('input_tsh2').value === '') {
+			alert('请填写末次sTg相应的TSH水平.');
+			document.getElementById('input_tsh2').focus();
+			return;
+		}
+		else if (document.getElementById('input_tg1').value === '') {
+			alert('请填写首次sTg水平.');
+			document.getElementById('input_tg1').focus();
+			return;
+		}
+		else if (document.getElementById('input_tg2').value === '') {
+			alert('请填写末次sTg水平.');
+			document.getElementById('input_tg2').focus();
+			return;
+		} else if (document.getElementById('input_tgab1').value === '' && document.getElementById('input_tgab2').value === '') {
+			alert('TgAb水平不能为空.');
+			return;
+		}
+
+		if (parseFloat(document.getElementById('input_tgab1').value) > 115 || 
+			parseFloat(document.getElementById('input_tgab2').value) > 115) {
+			alert('TgAb大于115IU/mL时可能对Tg水平造成干扰,影响判断结果准确性,请确认!');
+		};
+
+		if (parseFloat(document.getElementById('input_tsh1').value) < 30 || 
+			parseFloat(document.getElementById('input_tsh2').value) < 30) {
+			alert('TSH<30µIU/mL时可能因TSH对Tg分泌刺激不充分而对sTg水平监测造成干扰,影响判断结果准确性,请确认!');
+		};
+
+		var v_tg1 = parseFloat(document.getElementById('input_tg1').value),
+			v_tg2 = parseFloat(document.getElementById('input_tg2').value),
+			v_tsh1 = parseFloat(document.getElementById('input_tsh1').value),
+			v_tsh2 = parseFloat(document.getElementById('input_tsh2').value),
+			calc_1, calc_2, stat;
+
+			calc_1 = ((v_tg2-v_tg1)/(v_tsh2-v_tsh1)).toFixed(3);
+			calc_2 = (v_tg2/v_tsh2).toFixed(3);
+
+			if (isNaN(calc_1) || isNaN(calc_2)) {
+				stat = 5;
+			} else if (calc_1>=-0.400 && calc_1<=0.410) {
+				if (calc_2>=0.663) {stat = 1;} else {stat = 2;};
+			} else {
+				if (calc_2>=0.136) {stat = 3;} else {stat = 4;};
+			};
+
+			if (stat!=5) {
+			document.getElementById('results').innerHTML = '(Tg2-Tg1)/(TSH2-TSH1): ' + calc_1 + '<br>';
+			document.getElementById('results').innerHTML += 'Tg2/TSH2: ' + calc_2 + '<br><br>';
+			}
+
+			if (stat==1) {
+			document.getElementById('results').innerHTML += '经分析, 此病人为 <span class="red">M1 (远处转移)</span><br><br>';
+			} else if (stat==2) {
+			document.getElementById('results').innerHTML += '经分析, 此病人为 <span class="red">M0 (没有远处转移)</span><br><br>';
+			} else if (stat==3) {
+			document.getElementById('results').innerHTML += '经分析, 此病人为 <span class="red">M1 (远处转移)</span><br><br>';
+			} else if (stat==4) {
+			document.getElementById('results').innerHTML += '经分析, 此病人为 <span class="red">M0 (没有远处转移)</span><br><br>';
+			} else if (stat==5) {
+				document.getElementById('results').innerHTML = '输入数据无效.';
+			}
+
+
+			document.getElementById('results').style.display = 'block';
+
+
+	}
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

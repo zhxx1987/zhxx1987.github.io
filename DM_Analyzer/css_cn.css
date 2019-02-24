@@ -1,0 +1,95 @@
+body {
+	text-align: center;
+	background-color: #FFFFFF;
+	font-family: 12px/1 Tahoma, Helvetica, STKaiti, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", serif;
+}
+
+.intro {
+	font-size: 85%;
+	line-height: 170%;
+}
+
+.info {
+	font-size: 85%;
+	line-height: 170%;
+}
+
+#info {
+	font-size: 90%;
+	line-height: 120%;
+}
+
+div#content {
+	width: 75%;
+	text-align: center;
+	border: 1px solid #FF4178;
+}
+
+.red {
+	color: #B91613;
+	font-weight: bold;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.underline-blue {
+	text-decoration: underline;
+	color: #5A86BA;
+}
+
+#btn-calc {
+	width: 10em;  
+	height: 2em;
+	color:#FFFFFF;
+	background-color: #5A86BA;
+	font-size: 120%;
+	border: 1px solid #FFFFFF;
+	cursor: pointer;
+}
+
+#btn-calc:hover {
+	color:#FFFFFF;
+	background-color: #365272;
+}
+
+#btn-clear {
+	width: 10em;  
+	height: 2em;
+	color: black;
+	background-color: #E3F4FF;
+	font-size: 120%;
+	border: 1px solid #5A86BA;
+	cursor: pointer;
+}
+
+#btn-clear:hover {
+	color: black;
+	background-color: #D9EDF9;
+}
+
+#logo {
+	float: left;
+	height: 75px;
+}
+
+#header {
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+	background-color: #5A86BA;
+/*	background-color: #BA1803;*/
+	height: 75px;
+	line-height: 75px;
+	min-width: 700px;
+}
+
+#lang-version {
+	margin-top: 5px;
+	text-align: right;
+}
+
+#article {
+	display: none;
+}

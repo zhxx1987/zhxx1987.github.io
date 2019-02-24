@@ -1,0 +1,262 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>IVOCK</title>
+  </head>
+  <body bgcolor="#000000" link="#F2F2F2" text="#F2F2F2" vlink="#F2F2F2">	
+	<center>
+      <table border="0" cellpadding="0" cellspacing="0" height="100%">
+         <tbody>
+          <tr>
+            <td valign="CENTER">
+              <table border="0" cellpadding="0" cellspacing="0" width="900">
+                <tbody>
+                  <TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+                  <tr>
+                    <td colspan="3" width="100%">
+                      <font face="Arial" size="+3"> </font>
+                        <p><font face="Arial" size="+3"><b><i>Restoring Missing Vortices in Advection-Projection Fluid Solvers</i></b></FONT><BR>
+                        <font face="Arial" size="+1"><b><a href="IVOCK.pdf">[paper]   </a></b></FONT> 
+                        <font face="Arial" size="+1"><b><a href="https://github.com/zhxx1987/IVOCK">[code]   </a></b></FONT> 
+                        <font face="Arial" size="+1"><b><a href="https://www.youtube.com/watch?v=mLKrXiWoyxE">[video]   </a></b></FONT> 
+                        <font face="Arial" size="+1"><b><a href="IVOCK.bib">[bibtex]   </a></b></FONT> 
+												<font face="Arial"> <i>SIGGRAPH 2015</i></P>
+												
+                        
+                      </TD>
+                  </TR>
+                  <TR>
+                    <TD COLSPAN = "3"><HR></TD>
+                  <TR>
+									<TR>
+                    <TD>
+                      <TABLE BORDER = "0" CELLPADDING = "0" CELLSPACING = "0" WIDTH = "100%">
+                        <TR>
+                          <TD width = "20%">
+                            <font face="Arial"> 
+                            <a href="index.html">Xinxin Zhang</a>
+                            </font>
+                          </TD>
+                          <TD width = "40%">
+                            <font face="Arial"> 
+                            <i>University of British Columbia</i><BR>
+                            </font>
+                          </TD>
+													<TD width = "40%">
+                            <font face="Arial"> 
+                            <i>zhxx at cs dot ubc dot ca</i><BR>
+                            </font>
+                          </TD>
+                        </TR>
+                      </TABLE>
+                    </TD>
+                  </TR>
+									<TR>
+                    <TD>
+                      <TABLE BORDER = "0" CELLPADDING = "0" CELLSPACING = "0" WIDTH = "100%">
+                        <TR>
+                          <TD width = "20%">
+                            <font face="Arial"> 
+                            <a href="http://www.cs.ubc.ca/~rbridson/">Robert Bridson</a>
+                            </font>
+                          </TD>
+                          <TD width = "80%">
+                            <font face="Arial"> 
+                            <i>Autodesk, University of British Columbia</i><br>
+                            </font>
+                          </TD>
+                        </TR>
+                      </TABLE>
+                    </TD>
+                  </TR>
+
+                  <TR>
+                    <TD>
+                      <TABLE BORDER = "0" CELLPADDING = "0" CELLSPACING = "0" WIDTH = "100%">
+                        <TR>
+                          <TD width = "20%">
+                            <font face="Arial"> 
+                            <a href="https://www.cs.ubc.ca/~greif/">Chen Greif</a>
+                            </font>
+                          </TD>
+                          <TD width = "80%">
+                            <font face="Arial"> 
+                            <i>University of British Columbia</i><br>
+                            </font>
+                          </TD>
+                        </TR>
+                      </TABLE>
+                    </TD>
+                  </TR>
+									
+									
+									
+									
+									
+									
+									
+									
+									<TR>
+                    <TD COLSPAN = "3">&nbsp;</TD>
+                  <TR>
+                    <TD>
+                        <img src="smoke.gif"   width="900">
+                        <font face = "Arial" size = "-1"><I><B>Above:</B></I> Smoke raising from a cigarette simulated with IVOCK scheme</font>
+                        
+                    </td>
+                  </tr>
+									
+									
+									
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+                  <tr>
+                    <td colspan="3" align="justify" width="75%"> <font
+                        face="Arial"> <b>Abstract</b></font>
+                      <p><font face="Arial">
+
+                            Most visual effects fluid solvers use a time-splitting approach
+                            where velocity is first advected in the flow, then projected to be incompressible with pressure.
+                            Even if a highly accurate advection scheme is used, the self-advection step
+                            typically transfers some kinetic energy from divergence-free modes
+                            into divergent modes, which are then projected out by pressure, losing energy noticeably
+                            for large time steps. Instead of taking smaller time steps or using significantly more complex
+                            time integration, we propose a new scheme called
+                            IVOCK (Integrated Vorticity of Convective Kinematics) which cheaply captures much of what is lost
+                            in self-advection by identifying it as a violation of the vorticity equation.
+                            We measure vorticity on the grid before and after advection, taking into account vortex stretching,
+                            and use a cheap multigrid V-cycle approximation to a vector potential whose curl will
+                            correct the vorticity error. IVOCK works independently of the advection scheme (we present
+                            examples with various semi-Lagrangian methods and FLIP), works independently of how
+                            boundary conditions are applied (it just corrects error in advection, leaving pressure etc.\
+                            to take care of boundaries and other forces), and other solver parameters (we provide
+                            smoke, fire, and water examples). For $10\sim25\%$ extra computation time per step much larger
+                            steps can be used, while producing detailed vorticial structures and convincing turbulence that
+                            are lost without correction.
+                        </font> </p>
+                    </td>
+                  </tr>
+									
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									
+                      
+								
+                        
+                      
+                    
+									
+									
+									
+									
+									
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									
+									
+									
+									<tr>
+                    <td colspan="3">
+                      
+										<font face="Arial"> <b>Auxiliary videos</b></font>
+												 
+                      
+                    </td>
+                  </tr>	
+									<TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+									
+									<tr>
+                    <td colspan="3">
+                      
+										<font face="Arial"> <b>Youtube Links: </b></font>
+												 
+                      
+                    </td>
+                  </tr>		 
+									
+									
+                  <tr>
+                    <td colspan="3">
+                      <center>
+											  <iframe width="800" height="450" src="https://www.youtube.com/embed/mLKrXiWoyxE" frameborder="0" allowfullscreen></iframe>
+                        
+                      </center>
+                    </td>
+                  </tr>
+									
+									
+									
+									<tr>
+                    <td colspan="3">
+                      
+										<font face="Arial"> <b>Youku Links: </b></font>
+												 
+                      
+                    </td>
+                  </tr>
+									
+				 <tr>
+                    <td colspan="3">
+                      <center>
+										<iframe height="450" width="800" src="http://player.youku.com/embed/XOTUyOTM2NjMy" frameborder="0" allowfullscreen></iframe>
+
+																						 
+                        
+                      </center>
+                    </td>
+                  </tr>
+									
+									
+				
+                
+                
+                
+                <TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+                  <TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+                  <TR>
+                    <TD COLSPAN = "3">&nbsp; &nbsp;</TD>
+                  </TR>
+                  <tr>
+                    <td colspan="3" align="justify" width="75%"> <font
+                        face="Arial"> <b>Additional Comments</b></font>
+                      <p><font face="Arial">
+
+                            IVOCK provides an aternative way of applying viscosity: one can diffuse the stretch-advected 
+                            vorticity field instead of velocity field.</br>
+                        </font> </p>
+                    </td>
+                  </tr>
+                
+                
+                
+                
+                
+                
+                					
+									
+         
+        <tbody>
+			<table>
+			
+			
+			
+	<center>
+  </body>
+</html>

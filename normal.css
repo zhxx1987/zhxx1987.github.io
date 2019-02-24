@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+body
+{
+	background-color:Black;
+	color:white;
+	font-family: Arial, Helvetica, sans-serif;
+}
+h1
+{
+color:white;
+font-style:italic;
+font-family:"Times New Roman", Times, serif;
+-moz-animation-duration: 3s;
+-moz-animation-name: slidein;
+-moz-animation-iteration-count: infinite;
+}
+
+}
+
+
+h2
+{
+font-family:"Times New Roman", Times, serif;
+text-transform:uppercase;
+color:white;
+}
+
+a 
+{
+color:#FFFF99;
+text-decoration:none;
+font-weight:bold;
+text-decoration:underline;
+}
+
+a:hover {color:white; text-decoration:underline;}
+a.two:hover {text-decoration:none;}
+
+a.two
+{
+color:white;
+text-decoration:none;
+}
+
+.nav_a 
+{
+	margin-top: 0px;
+    margin-right: 5%;
+    margin-bottom: 0px;
+    margin-left: 5%;
+}
+
+spacer
+{
+	height: 10px;
+}

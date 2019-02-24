@@ -1,0 +1,249 @@
+<!doctype <html>
+<head>
+	<meta charset="utf-8">
+	<title>DM Analyzer</title>
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+	<![endif]-->
+	<link href="css_en.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<table id="main" width="100%" border="0" align="center">
+	<tr>
+	<td width="10%"></td>
+	<td width="80%" align="center">
+	<img id="logo" src="patent_logo_new_new_big_right.jpg"/>
+	<div id="header" class="red">
+		Distant Metastasis Analyzer for Differentiated Thyroid Carcinoma
+	</div>
+	<div id="lang-version"><a href="patent_cn.html">中文版</a></div>
+	<form id="calc_form">
+	<div class="intro">
+		<p align="left"><span class="bold" style="font-size: 120%">Information:</span> <br>Thyroid cancer is the most common malignancy in the endocrine system. Patients with differentiated thyroid carcinoma (DTC), which accounts for nearly 90% of thyroid cancer and is characterized by an indolent course with a low mortality, usually have a favorable long-term prognosis. However, distant metastasis, which occurs in 1% to 23% of patients with DTC in the literature, is generally considered to be associated with the decreased survival rate. As a matter of fact, it’s a huge challenge to identify these patients with distant metastasis timely, especially before radioiodine (RAI) therapy, but it’s important for facilitating risk stratification, tailoring therapeutic regimen, as well as improve patient’s prognosis. This analyzer is designed to help determine whether a patient presents with distant metastasis based on <span class="underline-blue">serial measurements of stimulated thyroglobulin (sTg) collected over the course of thyroxine withdrawal or no thyroxine administration after thyroidectomy, with an elevated TSH level of at least 30&mu;IU/mL</span> The accuracy of this analyzer is about 91.2%, with a specificity of 92.2% and a sensitivity of 87.5%.</p>
+	</div>
+		<hr>
+		<br>
+
+		<div id="info" align="left">
+	    <span class="bold">Please enter the results of <span class="underline-blue">the first</span> and <span class="underline-blue">last sTg and the corresponding blood tests</span> collected over the course of thyroxine (LT<sub>4</sub>) withdrawal or no LT<sub>4</sub> administration after thyroidectomy into the following 2 columns, respectively:</span>
+	    </div>
+
+	    <br>
+
+	    <div>
+	    <table id="input_table" width="100%" border="0" >
+	    	<tr class="red">
+	    		<td width="5%"></td>
+	    		<td width="25%"></td>
+	    		<td width="30%" align="center">
+	    			<label>Results of the First Tests</label>
+	    		</td>
+	    		<td width="30%" align="center">
+	    			<label>Results of the Last Tests</label>
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    	<tr></tr>
+	    	<tr>
+	    		<td width="5%"></td>
+	    		<td width="25%" class="red"><label>Date of Test</label></td>
+	    		<td width="30%" align="center">
+	    			<input type="text" id="input_date1" size="20" placeholder="yyyy/mm/dd">
+	    		</td>
+	    		<td width="30%" align="center">
+	    			<input type="text" id="input_date2" size="20" placeholder="yyyy/mm/dd">	
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    	<tr></tr>
+	    	<tr>
+	    		<td width="5%"></td>
+	    		<td width="25%" class="red"><label>Thyrotropin (TSH) </label></td>
+	    		<td width="30%" align="center">
+	    			<input type="text" id="input_tsh1" size="20" placeholder="0">
+	    		</td>
+	    		<td width="30%" align="center">
+	    			<input type="text" id="input_tsh2" size="20" placeholder="0">	
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    	<tr></tr>
+	    	<tr>
+	    		<td width="5%"></td>
+	    		<td width="25%" class="red"><label>Thyroglobulin (Tg) </label></td>
+	    		<td width="30%" align="center">
+	    			<input type="text" id="input_tg1" size="20" placeholder="0">
+	    		</td>
+	    		<td width="30%" align="center">
+	    			<input type="text" id="input_tg2" size="20" placeholder="0">	
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    	<tr></tr>
+	    	<tr>
+	    		<td width="5%"></td>
+	    		<td width="25%" class="red"><label>Anti-Tg Antibody (TgAb) </label></td>
+	    		<td width="30%" align="center">
+	    			<input type="text" id="input_tgab1" size="20" placeholder="0">
+	    		</td>
+	    		<td width="30%" align="center">
+	    			<input type="text" id="input_tgab2" size="20" placeholder="0">	
+	    		</td>
+	    		<td width="10%"></td>
+	    	</tr>
+	    
+	    </table>
+		</div>
+
+	    <br>
+
+	    <div class="info" id="notes" align="left">
+		    	<span class="bold">Annotations：</span>For ensuring the accuracy of the results, please make sure that<br>
+				  1. All the results of sTg is measured under the condition of TSH stimulation (usually when TSH&gt;30&mu;IU/mL).<br>
+				  2. TgAb&lt;115 IU/mL to minimize its interference to Tg measurement.<br>
+	    </div>
+
+	<br>
+
+	<div id="summary">
+
+	    <div class="group calc">
+	    	<table>
+	    		<tr>
+	    			<td><input type="button" value="Analyze" id="btn-calc" onclick="makePrediction()"></td>
+	    			<td width="20%"></td>
+	    			<td><input type="button" value="Reset" id="btn-clear" onclick="makeClear()"></td>
+	    		</tr>
+		    </table>
+
+	    </div>
+	    <br><br>
+	    <div id="results"></div>
+
+
+	</div>
+	</form>
+	</td>
+	<td width="10%"></td>
+	</tr>
+	</table>
+
+
+	<script type="text/javascript">
+	"use strict";
+
+	function makeClear() {
+		window.location.reload();
+	}
+
+	function makePrediction () {
+
+		if (document.getElementById('input_tsh1').value === '') {
+			alert('Please fill in the value of TSH with the first sTg test.');
+			document.getElementById('input_tsh1').focus();
+			return;
+		}
+		else if (document.getElementById('input_tsh2').value === '') {
+			alert('Please fill in the value of TSH with the last sTg test.');
+			document.getElementById('input_tsh2').focus();
+			return;
+		}
+		else if (document.getElementById('input_tg1').value === '') {
+			alert('Please fill in the value of first sTg.');
+			document.getElementById('input_tg1').focus();
+			return;
+		}
+		else if (document.getElementById('input_tg2').value === '') {
+			alert('Please fill in the value of last sTg.');
+			document.getElementById('input_tg2').focus();
+			return;
+		} else if (document.getElementById('input_tgab1').value === '' && document.getElementById('input_tgab2').value === '') {
+			alert('TgAb values can not be both empty.');
+			return;
+		}
+
+		if (parseFloat(document.getElementById('input_tgab1').value) > 115 || 
+			parseFloat(document.getElementById('input_tgab2').value) > 115) {
+			alert('When TgAb is above 115 IU/mL, it may influence the measurement of Tg and lead to inaccurate analysis, please be aware!');
+		};
+
+		if (parseFloat(document.getElementById('input_tsh1').value) < 30 || 
+			parseFloat(document.getElementById('input_tsh2').value) < 30) {
+			alert('When TSH is below 30µIU/mL, its stimulation may be insufficient and lead to inaccurate analysis, please be aware!');
+		};
+
+		var v_tg1 = parseFloat(document.getElementById('input_tg1').value),
+			v_tg2 = parseFloat(document.getElementById('input_tg2').value),
+			v_tsh1 = parseFloat(document.getElementById('input_tsh1').value),
+			v_tsh2 = parseFloat(document.getElementById('input_tsh2').value),
+			calc_1, calc_2, stat;
+
+			calc_1 = ((v_tg2-v_tg1)/(v_tsh2-v_tsh1)).toFixed(3);
+			calc_2 = (v_tg2/v_tsh2).toFixed(3);
+
+			if (isNaN(calc_1) || isNaN(calc_2)) {
+				stat = 5;
+			} else if (calc_1>=-0.400 && calc_1<=0.410) {
+				if (calc_2>=0.663) {stat = 1;} else {stat = 2;};
+			} else {
+				if (calc_2>=0.136) {stat = 3;} else {stat = 4;};
+			};
+
+			if (stat!=5) {
+			document.getElementById('results').innerHTML = '(Tg2-Tg1)/(TSH2-TSH1): ' + calc_1 + '<br>';
+			document.getElementById('results').innerHTML += 'Tg2/TSH2: ' + calc_2 + '<br><br>';
+			}
+
+			if (stat==1) {
+			document.getElementById('results').innerHTML += 'This DTC patient belongs to <span class="red">M1 (with distant metastasis).</span><br><br>';
+			} else if (stat==2) {
+			document.getElementById('results').innerHTML += 'This DTC patient belongs to <span class="red">M0 (with no distant metastasis)</span><br><br>';
+			} else if (stat==3) {
+			document.getElementById('results').innerHTML += 'This DTC patient belongs to <span class="red">M1 (with distant metastasis)</span><br><br>';
+			} else if (stat==4) {
+			document.getElementById('results').innerHTML += 'This DTC patient belongs to <span class="red">M0 (with no distant metastasis)</span><br><br>';
+			} else if (stat==5) {
+				document.getElementById('results').innerHTML = 'Invalid input.';
+			}
+
+			document.getElementById('results').style.display = 'block';
+
+	}
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
